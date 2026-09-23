@@ -2,8 +2,8 @@
 
 Repositorio con las memorias de las prácticas del módulo de Aplicaciones Web.
 
-**Alumno/a:** Tu Nombre y Apellido
-**Curso:** 1° SMR
+**Alumno/a:** Saba Burjanadze
+**Curso:** 2° SMX
 
 ## Índice de prácticas
 
