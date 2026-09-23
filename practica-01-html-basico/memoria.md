@@ -1,6 +1,12 @@
-# Título de nivel 1
-## Título de nivel 2
-### Título de nivel 3
+# Práctica 1 – Introducción a HTML básico
+## Objetivo
+Breve descripción de qué se pedía en la práctica.
+## Desarrollo
+Explicación de los pasos seguidos, con capturas o fragmentos de código.
+## Resultado
+Qué se ha conseguido, capturas del resultado final.
+## Conclusiones
+Dificultades encontradas y qué has aprendido.
 
 **Esto es negrita**
 *Esto es cursiva*
