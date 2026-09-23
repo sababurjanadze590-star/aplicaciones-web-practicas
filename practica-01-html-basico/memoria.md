@@ -18,7 +18,7 @@
 
 [Imagen de mundo](https://cdn.pixabay.com/photo/2011/12/13/14/28/earth-11009_640.jpg)
 
-![Texto alternativo](ruta-o-url-de-la-imagen.png)
+![Imagen de mundo](https://cdn.pixabay.com/photo/2011/12/13/14/28/earth-11009_640.jpg)
 
 Para centrar un elemento se usa la propiedad `text-align`.
 
