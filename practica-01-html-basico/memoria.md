@@ -14,16 +14,16 @@
 2. Segundo paso
 3. Tercer paso
 
-[Texto del enlace] (http://www.google.es)
+[Enlace de Google](http://www.google.es)
 
-[Memoria de la práctica 1](./practica-01-html-basico/memoria.md)
+[Imagen de mundo](https://cdn.pixabay.com/photo/2011/12/13/14/28/earth-11009_640.jpg)
 
 ![Texto alternativo](ruta-o-url-de-la-imagen.png)
 
 Para centrar un elemento se usa la propiedad `text-align`.
 
 ```html
-<h1>Hola mundo</h1>
+<h1>Hola me llamo Saba</h1>
 ```
 > Esto es una cita o una nota destacada.
 
