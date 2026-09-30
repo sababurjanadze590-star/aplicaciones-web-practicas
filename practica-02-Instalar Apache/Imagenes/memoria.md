@@ -30,4 +30,16 @@ sudo apt update
 sudo apt upgrade -y
 lsb_release -a
 ```
-![Texto alternativo](file:///home/mati/Imatges/Captura%20de%202026-09-30%2009-41-51.png)
+![lsb_release -a imagen para poner](file:///home/mati/Imatges/Captura%20de%202026-09-30%2009-41-51.png)
+
+Con `apt update` refrescamos los repositorios y con `upgrade` actualizamos el sistema. `lsb_release -a` nos muestra la versión exacta de Ubuntu Server 24.04 LTS que estamos utilizando.
+
+
+## Apartado 1. Instalación de Apache
+Procedemos a instalar el servidor web Apache2 en nuestra máquina virtual.
+
+```bash
+sudo apt install apache2 -y
+apache2 -v
+```
+
