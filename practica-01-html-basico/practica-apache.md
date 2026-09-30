@@ -1,8 +1,8 @@
 # Práctica: Instalación, configuración y securización de Apache en Ubuntu 24.04
 
 - **Módulo:** Aplicaciones Web (SMR)
-- **Alumno:** [Tu Nombre]
-- **Fecha:** [Fecha de realización]
+- **Alumno:** Saba Burjanadze
+- **Fecha:** 30/09/2026
 
 ---
 
@@ -28,4 +28,6 @@ Actualizamos la lista de paquetes del sistema operativo y actualizamos los exist
 ```bash
 sudo apt update
 sudo apt upgrade -y
-lsb_release -a
+lsb_release -a```
+
+![Captura del resultado final] (file:///home/mati/ImatgesCaptura%20de%202026-09-30%2009-41-51.png)
