@@ -28,6 +28,6 @@ Actualizamos la lista de paquetes del sistema operativo y actualizamos los exist
 ```bash
 sudo apt update
 sudo apt upgrade -y
-lsb_release -a```
+lsb_release -a
 
-![Captura del resultado final] (file:///home/mati/ImatgesCaptura%20de%202026-09-30%2009-41-51.png)
+![Imagen de mundo](file:///home/mati/Imatges/Captura%20de%202026-09-30%2009-41-51.png)
