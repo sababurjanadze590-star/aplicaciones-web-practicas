@@ -103,7 +103,8 @@ apache2ctl -M
 | a2enconf / a2disconf | Activa / desactiva fragmentos de configuración |
 
 ### ¿Cuándo conviene usar reload en lugar de restart?
-Conviene usar reload cuando modificamos ficheros de configuración y queremos aplicarlos al vuelo sin cortar las conexiones de los usuarios actuales. Se usa restart obligatoriamente cuando cambiamos parámetros estructurales de red, puertos de escucha o reiniciamos servicios base.
+Conviene usar `reload` cuando modificamos ficheros de configuración y queremos aplicarlos al vuelo sin cortar las conexiones de los usuarios actuales. Se usa `restart` obligatoriamente cuando cambiamos parámetros estructurales de red, puertos de escucha o reiniciamos servicios base.
+
 
 
 
