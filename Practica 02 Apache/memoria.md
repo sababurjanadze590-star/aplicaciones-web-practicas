@@ -126,8 +126,95 @@ ls -l /etc/apache2/sites-enabled/
 | /var/log/apache2/access.log | Registro de accesos |
 | /var/log/apache2/error.log | Registro de errores |
 
+### ¿Por qué Apache usa enlaces simbólicos entre los directorios *-available y *-enabled?
+Para separar los ficheros de configuración creados de los que están en producción. Facilita activar o desactivar sitios y módulos con un simple comando (`a2ensite`/`a2enmod`) sin tener que mover o borrar físicamente el archivo original.
+
+## Apartado 6. Modificaciones típicas del servicio
+Hacemos copia de seguridad previa y realizamos los cambios indicados:
+
+```bash
+sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
+```
+![imagen 7 Copia](imagenes/)
+
+### 6.1. Cambiar la página de inicio
+Modificamos el contenido del fichero raíz por defecto para personalizar la bienvenida:
+```bash
+echo "<h1>Servidor de [Tu Nombre]</h1>" | sudo tee /var/www/html/index.html
+```
+![imagen apartado 7.1](imagenes/)
+
+Sobrescribimos el fichero `index.html` en la ruta `/var/www/html/` con una etiqueta HTML personalizada para mostrar un título con nuestro nombre.
+
+### 6.2. Cambiar el puerto de escucha (al 8080)
+Modificamos los ficheros de configuración de puertos y el VirtualHost para cambiar temporalmente el puerto de escucha de Apache al 8080:
+```bash
+sudo nano /etc/apache2/ports.conf
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+![captura7.2.1](imagenes/)
+![captura7.2.2](imagenes/)
+![captura7.2guardada8080](imagenes/)
+
+(Cambiamos `Listen 80` por `Listen 8080` en el fichero de puertos y el bloque `<VirtualHost *:80>` por `<VirtualHost *:8080>` en el sitio por defecto).
+
+Comprobamos sintaxis, aplicamos los cambios y probamos con `curl`:
+
+```bash
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+curl -I http://localhost:8080
+```
+(Nota: Una vez comprobado que funcionaba en el puerto 8080, volvimos a cambiar los ficheros para dejar el puerto 80 por defecto y recargamos de nuevo con sudo systemctl reload apache2 para continuar con el resto de la práctica).
+
+![captura7.2.180](imagenes/)
+![captura7.2.280](imagenes/)
+![captura7.2guardada80](imagenes/)
+
+### 6.3. Definir el nombre del servidor
+Creamos un fichero de configuración independiente para definir el ServerName globalmente y evitar los avisos de dominio no reconocido en la terminal.
+
+```bash
+echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/servername.conf
+sudo a2enconf servername
+sudo systemctl reload apache2
+```
+![captura7.3](imagenes/)
+
+### 6.4. Cambiar el correo del administrador
+Editamos el fichero de configuración del sitio por defecto para modificar la directiva `ServerAdmin` y asignar una dirección de correo de contacto del administrador:
+
+```bash
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+![captura7.4](imagenes/)
+
+(Modificamos la línea `ServerAdmin webmaster@localhost` por `ServerAdmin admin@smr-web.local` dentro del bloque VirtualHost).
+
+### 6.5. Personalizar una página de error (404)
+
+Creamos un fichero HTML con un mensaje personalizado para los errores 404 y configuramos la directiva `ErrorDocument` dentro del VirtualHost:
+
+```bash
+echo "<h1>¡Vaya! Error 404: La página que buscas no existe en este servidor de SMR.</h1>" | sudo tee /var/www/html/error404.html
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+
+![captura7.5](imagenes/)
+
+(Añadimos la línea ´ErrorDocument 404 /error404.html´ debajo de ´DocumentRoot´).
+
+Comprobamos sintaxis y recargamos el servicio:
+
+```bash
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+curl -i http://localhost/pagina-que-no-existe
+```
+![captura7.5comprobacionError](imagenes/)
 
 
+**Explicación breve:** En este apartado hemos aprendido a realizar modificaciones esenciales en el comportamiento de Apache: realizar copias de seguridad de los ficheros de configuración, cambiar la página web principal, gestionar puertos de escucha, definir el nombre del servidor, cambiar el correo de contacto administrativo y personalizar las páginas de respuesta ante errores de los usuarios.
 
 
 
