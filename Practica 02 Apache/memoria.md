@@ -30,7 +30,7 @@ sudo apt update
 sudo apt upgrade -y
 lsb_release -a
 ```
-![Imagen](imagenes/imagen 1)
+![Imagen](imagenes/imagen1)
 
 Con `apt update` refrescamos los repositorios y con `upgrade` actualizamos el sistema. `lsb_release -a` nos muestra la versión exacta de Ubuntu Server 24.04 LTS que estamos utilizando.
 
