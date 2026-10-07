@@ -75,3 +75,17 @@ sudo ufw allow 'Apache'
 
 -Apache Secure: Abre únicamente el puerto 443 (tráfico HTTPS cifrado).
 
+## Apartado 4. Comandos principales de administración
+```bash
+sudo systemctl start apache2
+sudo systemctl stop apache2
+sudo systemctl restart apache2
+sudo systemctl reload apache2
+sudo systemctl enable apache2
+sudo systemctl disable apache2
+apache2ctl configtest
+apache2ctl -S
+apache2ctl -M
+```
+
+
