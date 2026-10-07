@@ -55,13 +55,15 @@ Verificamos que el servicio está activo, los puertos abiertos y probamos el acc
 sudo systemctl status apache2
 sudo ss -tulpn | grep apache2
 ```
+![estado systemctl status apache2 y de la página "Apache2 Ubuntu Default Page" cargando en el navegador](imagenes/imagen3.png)
+
 ### 3.2. Prueba local y cortafuegos
 ```bash
 curl -I http://localhost
 sudo ufw status
 sudo ufw allow 'Apache'
 ```
-![estado systemctl status apache2 y de la página "Apache2 Ubuntu Default Page" cargando en el navegador](imagenes/imagen3.png)
+![estado systemctl status apache2 y de la página "Apache2 Ubuntu Default Page" cargando en el navegador](imagenes/imagen5.png)
 
 **¿Qué diferencia hay entre los perfiles Apache, Apache Full y Apache Secure?**
 
