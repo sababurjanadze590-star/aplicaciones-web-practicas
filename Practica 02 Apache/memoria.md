@@ -87,5 +87,24 @@ apache2ctl configtest
 apache2ctl -S
 apache2ctl -M
 ```
+ Comando | Función |
+|------------|-------------|
+| sudo systemctl start apache2 | Inicia el servicio |
+| sudo systemctl stop apache2 | Detiene el servicio |
+| sudo systemctl restart apache2 | Reinicia cortando conexiones activas |
+| sudo systemctl reload apache2 | Recarga la configuración sin cortar conexiones |
+| sudo systemctl enable apache2 | Configura el arranque automático al iniciar el sistema |
+| sudo systemctl disable apache2 | Desactiva el arranque automático |
+| apache2ctl configtest | Comprueba la sintaxis de la configuración |
+| apache2ctl -S | Muestra los sitios (virtual hosts) cargados |
+| apache2ctl -M | Lista los módulos cargados |
+| a2enmod / a2dismod | Activa / desactiva módulos |
+| a2ensite / a2dissite | Activa / desactiva sitios |
+| a2enconf / a2disconf | Activa / desactiva fragmentos de configuración |
+
+### ¿Cuándo conviene usar reload en lugar de restart?
+Conviene usar reload cuando modificamos ficheros de configuración y queremos aplicarlos al vuelo sin cortar las conexiones de los usuarios actuales. Se usa restart obligatoriamente cuando cambiamos parámetros estructurales de red, puertos de escucha o reiniciamos servicios base.
+
+
 
 
