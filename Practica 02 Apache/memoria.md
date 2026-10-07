@@ -42,7 +42,7 @@ Procedemos a instalar el servidor web Apache2 en nuestra máquina virtual.
 sudo apt install apache2 -y
 apache2 -v
 ```
-![Instalación de Apache](file:///home/mati/Imatges/Captura%20de%202026-09-30%2009-41-51.png)
+![Instalación de Apache](imagen2.png)
 
 
 Durante la instalación de Apache (`apache2`), apt instala automáticamente paquetes necesarios como `apache2-bin`, `apache2-data`, `apache2-utils`, bibliotecas libapr, y módulos de manejo de tipos MIME o registros que permiten que el servidor funcione de manera modular.
@@ -61,7 +61,7 @@ curl -I http://localhost
 sudo ufw status
 sudo ufw allow 'Apache'
 ```
-![estado systemctl status apache2 y de la página "Apache2 Ubuntu Default Page" cargando en el navegador](file:///home/mati/Imatges/Captura%20de%202026-09-30%2009-41-51.png)
+![estado systemctl status apache2 y de la página "Apache2 Ubuntu Default Page" cargando en el navegador](imagen3.png)
 
 **¿Qué diferencia hay entre los perfiles Apache, Apache Full y Apache Secure?**
 
