@@ -211,13 +211,109 @@ sudo apache2ctl configtest
 sudo systemctl reload apache2
 curl -i http://localhost/pagina-que-no-existe
 ```
-![captura7.5comprobacionError](imagenes/)
+7.2. Tabla de módulos principales
 
 
 **Explicación breve:** En este apartado hemos aprendido a realizar modificaciones esenciales en el comportamiento de Apache: realizar copias de seguridad de los ficheros de configuración, cambiar la página web principal, gestionar puertos de escucha, definir el nombre del servidor, cambiar el correo de contacto administrativo y personalizar las páginas de respuesta ante errores de los usuarios.
 
+## Apartado 7. Módulos de Apache
+
+Apache funciona mediante módulos que se cargan según la necesidad del servidor web.
+
+### 7.1. Listado y activación de módulos
+Comprobamos los módulos activos actualmente y exploramos los disponibles:
+
+```bash
+apache2ctl -M
+ls /etc/apache2/mods-available/
+```
+![captura8.1apache2ctl-m](imagenes/)
+![captura8.2ls](imagenes/)
 
 
+### 7.2. Tabla de módulos principales
+Tabla resumen con las funciones de los módulos más habituales de Apache:
+ Módulo | Función |
+|------------|-------------|
+| mod_rewrite | Reescritura avanzada de URLs |
+| mod_headers | Manipulación de cabeceras HTTP |
+| mod_ssl | Soporte para comunicaciones cifradas HTTPS |
+| mod_status | Página de información y estado del servidor |
 
+![captura8.3](imagenes/)
+![captura8.4](imagenes/)
 
+### 7.3. Desactivación de módulos
+
+Probamos a desactivar un módulo del sistema y comprobamos el comportamiento al reiniciar:
+
+```bash
+sudo a2dismod status
+sudo systemctl restart apache2
+```
+![captura8.5](imagenes/)
+
+¿Qué ocurre si desactivas un módulo del que depende otro?
+El servidor fallará al intentar reiniciar o recargar la configuración, arrojando un error en el registro porque hay directivas en los ficheros de configuración que ya no encuentran el módulo encargado de ejecutarlas.
+
+## Apartado 8. Varios sitios en un mismo servidor (Virtual Hosts)
+
+### 8.1. Crear los directorios y páginas
+Creamos los directorios raíz y las páginas web para `sitio1.local` y `sitio2.local`
+
+```bash
+sudo mkdir -p /var/www/sitio1 /var/www/sitio2
+echo "<h1>Bienvenido a SITIO 1</h1>" | sudo tee /var/www/sitio1/index.html
+echo "<h1>Bienvenido a SITIO 2</h1>" | sudo tee /var/www/sitio2/index.html
+```
+Configuramos sus respectivos ficheros .conf en /etc/apache2/sites-available/, los activamos y desactivamos el predeterminado
+
+```bash
+sudo a2ensite sitio1.conf sitio2.conf
+sudo a2dissite 000-default.conf
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+apache2ctl -S
+```
+Añadimos la resolución en /etc/hosts
+```bash
+127.0.0.1 sitio1.local sitio2.local
+```
+Probamos las peticiones con curl:
+```bash
+curl [http://sitio1.local](http://sitio1.local)
+curl [http://sitio2.local](http://sitio2.local)
+```
+![captura9](imagenes/)
+
+¿Qué diferencia hay entre virtual hosts basados en nombre y basados en IP? ¿Cuál has usado?
+El servidor fallará al intentar reiniciar o recargar la configuración, arrojando un error en el registro porque hay directivas en los ficheros que ya no encuentran el módulo encargado de interpretarlas.
+
+## Apartado 9. Permisos y propietarios
+omprobamos el usuario de ejecución (www-data) y aplicamos permisos seguros
+
+```bash
+ps aux | grep apache2
+grep -E "APACHE_RUN_(USER|GROUP)" /etc/apache2/envvars
+ls -ld /var/www/sitio1 /var/www/sitio1/index.html
+sudo chown -R www-data:www-data /var/www/sitio1
+sudo find /var/www/sitio1 -type d -exec chmod 755 {} \;
+sudo find /var/www/sitio1 -type f -exec chmod 644 {} \;
+```
+Provocamos el error 403 Forbidden quitando los permisos al fichero índice y revisamos el registro de errores
+
+```bash
+sudo chmod 000 /var/www/sitio1/index.html
+curl -I [http://sitio1.local](http://sitio1.local)
+sudo tail -n 5 /var/log/apache2/error.log
+sudo chmod 644 /var/www/sitio1/index.html
+```
+![captura10](imagenes/)
+
+Explicaciones de la memoria:
+755 y 644: El 755 en directorios otorga lectura, escritura y ejecución al propietario y lectura/ejecución al resto; el 644 en ficheros otorga lectura y escritura al propietario y solo lectura al resto.
+
+Por qué no usar permisos 777: Porque permitirían que cualquier usuario o proceso modifique o borre archivos libremente, comprometiendo gravemente la seguridad del servidor.
+
+Por qué el contenido no debe pertenecer a root: Para evitar que una brecha de seguridad en la aplicación web permita a un atacante escalar privilegios y controlar el sistema operativo con la cuenta de superusuario.
 
