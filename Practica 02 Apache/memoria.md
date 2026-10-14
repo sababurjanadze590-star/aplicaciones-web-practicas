@@ -112,7 +112,7 @@ Exploramos la estructura de directorios de configuración de Apache y comprobamo
 ls -l /etc/apache2/
 ls -l /etc/apache2/sites-enabled/
 ```
-![imagen apartado 5](imagenes/)
+![imagen apartado 5](imagenes/imagen6.png)
  Comando | Función |
 |------------|-------------|
 | /etc/apache2/apache2.conf | Fichero de configuración principal |
@@ -135,14 +135,14 @@ Hacemos copia de seguridad previa y realizamos los cambios indicados:
 ```bash
 sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
 ```
-![imagen 7 Copia](imagenes/)
+![imagen 7 Copia](imagenes/captura7.png)
 
 ### 6.1. Cambiar la página de inicio
 Modificamos el contenido del fichero raíz por defecto para personalizar la bienvenida:
 ```bash
 echo "<h1>Servidor de [Tu Nombre]</h1>" | sudo tee /var/www/html/index.html
 ```
-![imagen apartado 7.1](imagenes/)
+![imagen apartado 7.1](imagenes/captura7.1.png)
 
 Sobrescribimos el fichero `index.html` en la ruta `/var/www/html/` con una etiqueta HTML personalizada para mostrar un título con nuestro nombre.
 
@@ -152,9 +152,9 @@ Modificamos los ficheros de configuración de puertos y el VirtualHost para camb
 sudo nano /etc/apache2/ports.conf
 sudo nano /etc/apache2/sites-available/000-default.conf
 ```
-![captura7.2.1](imagenes/)
-![captura7.2.2](imagenes/)
-![captura7.2guardada8080](imagenes/)
+![captura7.2.1](imagenes/captura7.2.cambio18080.png)
+![captura7.2.2](imagenes/captura7.2.8080cambio2.png)
+![captura7.2guardada8080](imagenes/captura7.2guardado8080)
 
 (Cambiamos `Listen 80` por `Listen 8080` en el fichero de puertos y el bloque `<VirtualHost *:80>` por `<VirtualHost *:8080>` en el sitio por defecto).
 
@@ -167,9 +167,9 @@ curl -I http://localhost:8080
 ```
 (Nota: Una vez comprobado que funcionaba en el puerto 8080, volvimos a cambiar los ficheros para dejar el puerto 80 por defecto y recargamos de nuevo con sudo systemctl reload apache2 para continuar con el resto de la práctica).
 
-![captura7.2.180](imagenes/)
-![captura7.2.280](imagenes/)
-![captura7.2guardada80](imagenes/)
+![captura7.2.180](imagenes/captura7.2.1.puerto80.png)
+![captura7.2.280](imagenes/captura7.2puero80.png)
+![captura7.2guardada80](imagenes/captura7.2guardado80.png)
 
 ### 6.3. Definir el nombre del servidor
 Creamos un fichero de configuración independiente para definir el ServerName globalmente y evitar los avisos de dominio no reconocido en la terminal.
@@ -179,7 +179,7 @@ echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/servername.co
 sudo a2enconf servername
 sudo systemctl reload apache2
 ```
-![captura7.3](imagenes/)
+![captura7.3](imagenes/captura7.3.png)
 
 ### 6.4. Cambiar el correo del administrador
 Editamos el fichero de configuración del sitio por defecto para modificar la directiva `ServerAdmin` y asignar una dirección de correo de contacto del administrador:
@@ -187,7 +187,7 @@ Editamos el fichero de configuración del sitio por defecto para modificar la di
 ```bash
 sudo nano /etc/apache2/sites-available/000-default.conf
 ```
-![captura7.4](imagenes/)
+![captura7.4](imagenes/captura7.4comprobacion.dominio.png)
 
 (Modificamos la línea `ServerAdmin webmaster@localhost` por `ServerAdmin admin@smr-web.local` dentro del bloque VirtualHost).
 
@@ -200,7 +200,8 @@ echo "<h1>¡Vaya! Error 404: La página que buscas no existe en este servidor de
 sudo nano /etc/apache2/sites-available/000-default.conf
 ```
 
-![captura7.5](imagenes/)
+![captura7.5](imagenes/captura7.5.png)
+
 
 (Añadimos la línea ´ErrorDocument 404 /error404.html´ debajo de ´DocumentRoot´).
 
@@ -211,7 +212,7 @@ sudo apache2ctl configtest
 sudo systemctl reload apache2
 curl -i http://localhost/pagina-que-no-existe
 ```
-7.2. Tabla de módulos principales
+![captura7.5.comprobacion](imagenes/captura7.5comprobacionError.png)
 
 
 **Explicación breve:** En este apartado hemos aprendido a realizar modificaciones esenciales en el comportamiento de Apache: realizar copias de seguridad de los ficheros de configuración, cambiar la página web principal, gestionar puertos de escucha, definir el nombre del servidor, cambiar el correo de contacto administrativo y personalizar las páginas de respuesta ante errores de los usuarios.
@@ -227,8 +228,8 @@ Comprobamos los módulos activos actualmente y exploramos los disponibles:
 apache2ctl -M
 ls /etc/apache2/mods-available/
 ```
-![captura8.1apache2ctl-m](imagenes/)
-![captura8.2ls](imagenes/)
+![captura8.1apache2ctl-m](imagenes/captura8.1apache2ctl-m.png)
+![captura8.2ls](imagenes/captura8.2ls.png)
 
 
 ### 7.2. Tabla de módulos principales
@@ -240,8 +241,8 @@ Tabla resumen con las funciones de los módulos más habituales de Apache:
 | mod_ssl | Soporte para comunicaciones cifradas HTTPS |
 | mod_status | Página de información y estado del servidor |
 
-![captura8.3](imagenes/)
-![captura8.4](imagenes/)
+![captura8.3](imagenes/captura8.3.png)
+![captura8.4](imagenes/captura8.4comprobargrep-e.png)
 
 ### 7.3. Desactivación de módulos
 
@@ -251,7 +252,7 @@ Probamos a desactivar un módulo del sistema y comprobamos el comportamiento al 
 sudo a2dismod status
 sudo systemctl restart apache2
 ```
-![captura8.5](imagenes/)
+![captura8.5](imagenes/captura8.5desactivar.png)
 
 ¿Qué ocurre si desactivas un módulo del que depende otro?
 El servidor fallará al intentar reiniciar o recargar la configuración, arrojando un error en el registro porque hay directivas en los ficheros de configuración que ya no encuentran el módulo encargado de ejecutarlas.
@@ -284,7 +285,7 @@ Probamos las peticiones con curl:
 curl [http://sitio1.local](http://sitio1.local)
 curl [http://sitio2.local](http://sitio2.local)
 ```
-![captura9](imagenes/)
+![captura9](imagenes/captura9.png)
 
 ¿Qué diferencia hay entre virtual hosts basados en nombre y basados en IP? ¿Cuál has usado?
 El servidor fallará al intentar reiniciar o recargar la configuración, arrojando un error en el registro porque hay directivas en los ficheros que ya no encuentran el módulo encargado de interpretarlas.
@@ -308,7 +309,7 @@ curl -I [http://sitio1.local](http://sitio1.local)
 sudo tail -n 5 /var/log/apache2/error.log
 sudo chmod 644 /var/www/sitio1/index.html
 ```
-![captura10](imagenes/)
+![captura10](imagenes/captura10png)
 
 Explicaciones de la memoria:
 755 y 644: El 755 en directorios otorga lectura, escritura y ejecución al propietario y lectura/ejecución al resto; el 644 en ficheros otorga lectura y escritura al propietario y solo lectura al resto.
