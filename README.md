@@ -10,4 +10,4 @@ Repositorio con las memorias de las prácticas del módulo de Aplicaciones Web.
 | N° | Práctica | Memoria |
 |---|---|---|
 | 1 | Introducción a HTML básico | [Ver memoria](./practica-01-html-basico/memoria.md) |
-| 2 | Practica 02 Apache | [Ver memoria](./Practica 02 Apache/memoria.md) |
+| 2 | Practica 02 Apache | [Ver memoria](./Practica%2002%20Apache/memoria.md) |
