@@ -288,7 +288,7 @@ curl [http://sitio2.local](http://sitio2.local)
 ![captura9](imagenes/captura9.png)
 
 ¿Qué diferencia hay entre virtual hosts basados en nombre y basados en IP? ¿Cuál has usado?
-El servidor fallará al intentar reiniciar o recargar la configuración, arrojando un error en el registro porque hay directivas en los ficheros que ya no encuentran el módulo encargado de interpretarlas.
+Los **basados en IP** usan una dirección IP distinta por sitio, mientras que los **basados en nombre** comparten la misma IP y Apache los diferencia por la cabecera `Host`. Hemos usado **basados en nombre**.
 
 ## Apartado 9. Permisos y propietarios
 omprobamos el usuario de ejecución (www-data) y aplicamos permisos seguros
