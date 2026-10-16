@@ -154,7 +154,7 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 ```
 ![captura7.2.1](imagenes/captura7.2.cambio18080.png)
 ![captura7.2.2](imagenes/captura7.2.8080cambio2.png)
-![captura7.2guardada8080](imagenes/captura7.2guardado8080)
+![captura7.2guardada8080](imagenes/captura7.2guardado8080.png)
 
 (Cambiamos `Listen 80` por `Listen 8080` en el fichero de puertos y el bloque `<VirtualHost *:80>` por `<VirtualHost *:8080>` en el sitio por defecto).
 
