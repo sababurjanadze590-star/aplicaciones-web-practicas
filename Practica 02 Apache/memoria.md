@@ -229,7 +229,7 @@ apache2ctl -M
 ls /etc/apache2/mods-available/
 ```
 ![captura8.1apache2ctl-m](imagenes/captura8.1apache2ctl-m.png)
-![captura8.2ls](imagenes/captura8.2ls.png)
+![captura8.2ls](imagenes/Captura8.2ls.png)
 
 
 ### 7.2. Tabla de módulos principales
