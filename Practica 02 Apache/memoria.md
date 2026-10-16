@@ -286,6 +286,7 @@ curl [http://sitio1.local](http://sitio1.local)
 curl [http://sitio2.local](http://sitio2.local)
 ```
 ![captura9](imagenes/captura9.png)
+![captura9](imagenes/captura%20prueba.png)
 
 ¿Qué diferencia hay entre virtual hosts basados en nombre y basados en IP? ¿Cuál has usado?
 Los **basados en IP** usan una dirección IP distinta por sitio, mientras que los **basados en nombre** comparten la misma IP y Apache los diferencia por la cabecera `Host`. Hemos usado **basados en nombre**.
