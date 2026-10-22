@@ -195,7 +195,7 @@ php -v
 ```
 **¿Qué hace?**: Muestra de nuevo la versión de PHP para confirmar que todo el entorno responde correctamente
 
-![Imagen](7.capturafinal.png)
+![Imagen](imagenes/7.1capturafinal.png)
 
 
 Pieza del LAMP |Programa | Estado |
