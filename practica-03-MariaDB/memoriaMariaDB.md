@@ -1,8 +1,8 @@
 # Práctica: Instalación de MariaDB y PHP en Ubuntu 24.04 (Completando el LAMP)
 
-- **Módulo:** Aplicaciones Web (SMR)
-- **Alumno:** Saba Burjanadze
-- **Fecha:** 21/10/2026
+- **Módulo:** Aplicaciones Web (SMR)[cite: 46]
+- **Alumno:** Saba
+- **Fecha:** Octubre 2026
 
 ---
 
@@ -18,11 +18,10 @@
 ---
 
 ## Apartado 1. Preparación del sistema
-Dejamos activo únicamente el sitio por defecto de Apache y actualizamos los paquetes del sistema operativo:
+Antes de empezar con la base de datos, dejamos activo únicamente el sitio web por defecto de Apache y actualizamos los paquetes del sistema operativo.
 
+### Comandos ejecutados:
 ```bash
 sudo a2ensite 000-default.conf
-sudo systemctl reload apache2
-sudo apt update
-sudo apt upgrade -y
-systemctl is-active apache2
+```
+**¿Qué hace?**: Vuelve a habilitar el sitio web virtual predeterminado de Apache por seguridad.
