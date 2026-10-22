@@ -43,3 +43,59 @@ systemctl is-active apache2
 **¿Qué hace?**: Comprueba de forma rápida si el servicio de Apache se encuentra ejecutándose correctamente (debe responder `active`).
 
 ![Imagen](imagenes/1.apache2active.png)
+
+
+## Apartado 2. Instalación de MariaDB
+Instalamos el sistema gestor de bases de datos relacionales MariaDB en nuestra máquina virtual con Ubuntu 24.04
+
+```bash
+sudo apt install mariadb-server -y
+```
+**¿Qué hace?**: Descarga e instala el paquete del servidor de bases de datos MariaDB de forma desatendida
+
+![Imagen](imagenes/2.captura.instal.mariaDB.png)
+
+```bash
+mariadb --version
+```
+**¿Qué hace?**: Consulta la versión exacta de MariaDB que se acaba de instalar en el sistema
+
+![Imagen](imagenes/2.1.captura.version.MariDB.png)
+
+
+## Apartado 3. Comprobación del funcionamiento
+Verificamos que el servicio de base de datos está activo, configurado para arrancar automáticamente con el sistema y probamos el acceso al monitor interactivo.
+
+```bash
+sudo systemctl status mariadb
+```
+**¿Qué hace?**: Muestra el estado detallado del servicio MariaDB, comprobando que está en ejecución (`active running`).
+
+![Imagen](imagenes/3.1.captura.status.maridb.png)
+
+```bash
+systemctl is-enabled mariadb
+```
+**¿Qué hace?**: Verifica si el servicio está configurado para iniciarse automáticamente cada vez que se enciende la máquina virtual (`enabled`).
+
+```bash
+sudo mariadb
+```
+**¿Qué hace?**: Accede al monitor de la base de datos con privilegios de administrador. Al entrar, el prompt cambia a `MariaDB [(none)]>`. (Para salir de la consola escribimos `exit` y pulsamos Enter)
+
+![Imagen](imagenes/3.captura.mariadb.monitor.png)
+
+## Apartado 4. Comandos principales
+Tabla resumen con los comandos esenciales para administrar el servicio de MariaDB.
+
+
+
+
+
+
+
+
+
+
+
+
