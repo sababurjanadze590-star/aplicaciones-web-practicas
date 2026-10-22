@@ -24,4 +24,6 @@ Antes de empezar con la base de datos, dejamos activo únicamente el sitio web p
 ```bash
 sudo a2ensite 000-default.conf
 ```
+![Imagen](imagenes/imagen1)
+
 **¿Qué hace?**: Vuelve a habilitar el sitio web virtual predeterminado de Apache por seguridad.
