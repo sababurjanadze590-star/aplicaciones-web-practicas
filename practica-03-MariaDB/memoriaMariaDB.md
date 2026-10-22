@@ -197,6 +197,7 @@ php -v
 
 ![Imagen](7.capturafinal.png)
 
+
 Pieza del LAMP |Programa | Estado |
 |------------|-------------| ------------|
 | Linux | Ubuntu 24.04 | Instalado y operativo |
