@@ -88,14 +88,57 @@ sudo mariadb
 ## Apartado 4. Comandos principales
 Tabla resumen con los comandos esenciales para administrar el servicio de MariaDB.
 
+ Comando | Función |
+|------------|-------------|
+| sudo systemctl start mariadb | Arranca el servicio de la base de datos |
+| sudo systemctl stop mariadb | Detiene el servicio por completo |
+| sudo systemctl restart mariadb | Reinicia el servicio cortando conexiones activas |
+| sudo systemctl status mariadb | Muestra información detallada sobre el estado actual |
+| sudo systemctl enable mariadb | Configura el arranque automático al encender el equipo |
 
+## Apartado 5. ¿Qué pasa si MariaDB está parado?
+Simulamos una caída del servicio de base de datos para aprender a diagnosticar errores comunes de conexión.
 
+```bash
+sudo systemctl stop mariadb
+```
+**¿Qué hace?**: Detiene a propósito el servicio de MariaDB
 
+```bash
+systemctl is-active mariadb
+```
+**Qué hace?**: Comprueba el estado, devolviendo `inactive`.
 
+```bash
+sudo mariadb
+```
+**¿Qué hace?**: Intenta abrir el monitor de MariaDB con el servicio detenido, generando un error de socket (`Can't connect to local server...`)
 
+![Imagen](imagenes/5.captura.error.mariadb.png)
 
+```bash
+sudo systemctl start mariadb
+```
+**¿Qué hace?**: Vuelve a poner en marcha el servicio de base de datos
 
+```bash
+systemctl is-active mariadb
+```
+**¿Qué hace?**: Comprueba que el servicio ha vuelto a la normalidad respondiendo `active`
 
+```bash
+sudo mariadb
+```
+**¿Qué hace?**: Accede al monitor de la base de datos con privilegios de administrador. Al entrar, el prompt cambia a `MariaDB [(none)]>`. (Para salir de la consola escribimos `exit` y pulsamos Enter)
 
+![Imagen](imagenes/5.1captura.recuperacion.mariadb.png)
 
+## Apartado 6. Instalación de PHP
+
+WordPress está desarrollado en PHP, por lo que instalamos este lenguaje junto con todas las librerías y extensiones necesarias para su correcta ejecución
+
+```bash
+sudo apt install php libapache2-mod-php php-mysql php-curl php-gd php-mbstring php-xml php-zip php-intl -y
+```
+**¿Qué hace?**: Instala PHP 8.3 y los módulos imprescindibles (como `php-mysql` para conectar con MariaDB, `php-gd` para imágenes, `php-zip` para extensiones, etc.)
 
