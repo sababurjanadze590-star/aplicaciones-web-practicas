@@ -142,3 +142,68 @@ sudo apt install php libapache2-mod-php php-mysql php-curl php-gd php-mbstring p
 ```
 **¿Qué hace?**: Instala PHP 8.3 y los módulos imprescindibles (como `php-mysql` para conectar con MariaDB, `php-gd` para imágenes, `php-zip` para extensiones, etc.)
 
+![Imagen](imagenes/6.captura.instalar.PHP.png)
+
+```bash
+php -v
+```
+**¿Qué hace?**: Comprueba la versión instalada de PHP
+
+```bash
+sudo systemctl restart apache2
+```
+**¿Qué hace?**: Reinicia Apache para que cargue los módulos de PHP recién instalados
+
+```bash
+sudo apache2ctl -M | grep -E "mpm|php"
+```
+Qué hace?: Filtra los módulos activos de Apache para comprobar que `php_module` y `mpm_prefork_module` están funcionando.
+
+```bash
+php -m | grep -i mysql
+```
+**Qué hace?**: Comprueba que PHP cuenta con los controladores necesarios (mysqli, pdo_mysql) para hablar con MariaDB
+
+```bash
+echo '<?php phpinfo();' | sudo tee /var/www/html/info.php
+```
+**Gh Qué hace?**: Crea una página web temporal de pruebas en la raíz de Apache para verificar la ejecución de PHP. (Accede a `http://IP_DE_TU_SERVIDOR/info.php` desde el navegador).
+
+![Imagen](imagenes/6.1.capturaphp-v.png)
+
+![Imagen](imagenes/6.3.captura.php.modulos.png)
+
+
+```bash
+sudo rm /var/www/html/info.php
+ls /var/www/html
+```
+**¿Qué hace?**: Borra obligatoriamente el fichero de pruebas `info.php` por motivos de seguridad y comprueba que se ha eliminado correctamente
+
+![Imagen](imagenes/6.4.captura.borrar.info.png)
+
+## Apartado 7. Comprobación final
+Validamos que todos los componentes de la pila LAMP están activos y operativos al mismo tiempo
+
+```bash
+systemctl is-active apache2 mariadb
+```
+**¿Qué hace?**: Comprueba de un vistazo que tanto el servidor web como el servidor de base de datos están activos
+
+```bash
+php -v
+```
+**¿Qué hace?**: Muestra de nuevo la versión de PHP para confirmar que todo el entorno responde correctamente
+
+![Imagen](7.capturafinal.png)
+
+Pieza del LAMP |Programa | Estado |
+|------------|-------------| ------------|
+| Linux | Ubuntu 24.04 | Instalado y operativo |
+| Apache | Apache2 | Funcionando |
+| MariaDB | MariaDB 10.11 | Funcionando |
+| PHP | PHP 8.3 | Funcionando y conectado a MariaDB |
+
+
+
+
