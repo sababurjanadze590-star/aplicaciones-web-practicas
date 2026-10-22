@@ -11,3 +11,4 @@ Repositorio con las memorias de las prácticas del módulo de Aplicaciones Web.
 |---|---|---|
 | 1 | Introducción a HTML básico | [Ver memoria](./practica-01-html-basico/memoria.md) |
 | 2 | Practica 02 Apache | [Ver memoria](./Practica%2002%20Apache/memoria.md) |
+| 3 | practica-03-MariaDB | [Ver memoria](./practica-03-MariaDB/memoriaMariaDB.md) |
