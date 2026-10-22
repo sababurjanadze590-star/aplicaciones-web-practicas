@@ -24,6 +24,22 @@ Antes de empezar con la base de datos, dejamos activo únicamente el sitio web p
 ```bash
 sudo a2ensite 000-default.conf
 ```
-![Imagen](imagenes/imagen1)
-
 **¿Qué hace?**: Vuelve a habilitar el sitio web virtual predeterminado de Apache por seguridad.
+```bash
+sudo systemctl reload apache2
+```
+**¿Qué hace?**: Recarga la configuración del servidor web Apache para aplicar los cambios del sitio predeterminado.
+
+```bash
+sudo apt update
+```
+**¿Qué hace?**: Actualiza la lista local de paquetes y versiones disponibles en los repositorios oficiales de Ubuntu.
+
+![Imagen](imagenes/1.1captura000default.png)
+
+```bash
+systemctl is-active apache2
+```
+**¿Qué hace?**: Comprueba de forma rápida si el servicio de Apache se encuentra ejecutándose correctamente (debe responder `active`).
+
+![Imagen](imagenes/1.apache2active.png)
