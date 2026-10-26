@@ -4,9 +4,8 @@
 |---|---|
 | **Ciclo** | Sistemas Microinformáticos y Redes (SMR) |
 | **Módulo** | Aplicaciones Web |
-| **Alumno/a** | _TU NOMBRE Y APELLIDOS_ |
-| **Curso** | _TU CURSO (p. ej. 2025/2026)_ |
-| **Fecha** | _FECHA DE ENTREGA_ |
+| **Alumno/a** | Saba Burjanadze |
+| **Curso** | 2SMX 23/10/2026 |
 
 > 🔒 **Seguridad:** en esta memoria no aparece ninguna contraseña real. Donde iría una contraseña se escribe `********` y las capturas tienen las contraseñas tapadas.
 
@@ -88,9 +87,8 @@ php -v
 | `systemctl is-active apache2 mariadb` | Pregunta a `systemd` si los servicios `apache2` y `mariadb` están en marcha. Debe responder `active` dos veces. |
 | `php -v` | Muestra la versión de PHP instalada (PHP 8.3.x). |
 
-📸 **Captura: conexión SSH, `systemctl is-active` y `php -v`**
 
-![Conexión SSH y comprobación de servicios](img/01-ssh-comprobacion.png)
+![Conexión SSH y comprobación de servicios](imagenes/1.capturacomprobacion.png)
 
 ### ❓ ¿Qué dos "puertas" (programas y puertos) usas y para qué sirve cada una?
 
@@ -129,9 +127,7 @@ sudo systemctl reload apache2
 >
 > `tee` con `sudo` crea el fichero de configuración (la redirección `>` no heredaría los permisos de `sudo`), `a2enconf` lo activa y `configtest` debe mostrar ya solo `Syntax OK`.
 
-📸 **Captura: cambio de sitios y `configtest`**
-
-![Cambio de sitios activos](img/02-apache-cambio-sitios.png)
+![Cambio de sitios activos](imagenes/2.captura.sitios.activos.png)
 
 ### 2.2. Comprobar que solo hay un sitio activo y qué carpeta usa
 
@@ -147,7 +143,7 @@ grep DocumentRoot /etc/apache2/sites-enabled/000-default.conf
 
 📸 **Captura: sitios activos y `DocumentRoot`**
 
-![Sitios activos y DocumentRoot](img/03-apache-sitio-unico.png)
+![Sitios activos y DocumentRoot](imagenes/2.1captura.sitio.unico.png)
 
 ### 2.3. Comprobar que el navegador llega al servidor
 
@@ -155,7 +151,7 @@ En el navegador de mi ordenador abro `http://192.168.56.19`. Aparece la página 
 
 📸 **Captura: página de Apache en el navegador**
 
-![Página de Apache en el navegador](img/04-apache-navegador.png)
+![Página de Apache en el navegador](imagenes/2.2captura.navegador.png)
 
 ### ❓ ¿Qué diferencia hay entre desactivar un sitio con `a2dissite` y borrar sus ficheros? ¿Por qué ahora ves la página por defecto y antes veías sitio1?
 
@@ -202,7 +198,7 @@ Cada una de las tres órdenes SQL responde `Query OK`.
 
 📸 **Captura: creación de la base de datos y el usuario (contraseña tapada)**
 
-![Creación de la base de datos y el usuario](img/05-mariadb-creacion.png)
+![Creación de la base de datos y el usuario](imagenes/3.captura.mariadb.creacion.png)
 
 ### 3.2. Comprobar que la llave funciona
 
@@ -221,7 +217,7 @@ Aparece el prompt `MariaDB [wordpress]>`, así que todo funciona. Salgo con `exi
 
 📸 **Captura: entrada con `wp_user`**
 
-![Entrada con wp_user](img/06-mariadb-wp-user.png)
+![Entrada con wp_user](imagenes/3.1captura.mariadb-wp-user.png)
 
 ### ❓ ¿Por qué WordPress usa su propio usuario `wp_user` y no el usuario root de MariaDB?
 
@@ -251,7 +247,7 @@ ls wordpress
 
 📸 **Captura: descarga y descompresión**
 
-![Descarga y descompresión de WordPress](img/4_captura_descargar_descomprimir.png)
+![Descarga y descompresión de WordPress](imagenes/4.captura.descargar.descomprimir.png)
 
 ### 4.2. Colocarlo en la carpeta de mi sitio
 
@@ -271,7 +267,7 @@ ls /var/www/html
 
 📸 **Captura: copia de WordPress a `/var/www/html`**
 
-![Copia de WordPress a /var/www/html](img/4_1_colocar_carpeta_sitio.png)
+![Copia de WordPress a /var/www/html](imagenes/4.1.colocar.carpeta.sitio.png)
 
 ### ❓ Explica qué hace cada uno de los comandos que acabas de ejecutar.
 
@@ -299,9 +295,9 @@ La última orden muestra `www-data www-data` como propietario y grupo.
 
 📸 **Capturas: permisos aplicados y resultado de `ls`**
 
-![Permisos aplicados](img/4_2_darpermisos.png)
+![Permisos aplicados](imagenes/4.2.darpermisos.png)
 
-![Resultado de ls y ls -ld](img/4_3_resultado_ls.png)
+![Resultado de ls y ls -ld](imagenes/4.3.resultado.ls.png)
 
 ### ❓ ¿Por qué hay que cambiar el propietario a `www-data`? ¿Qué podría fallar si siguiera siendo tu usuario?
 
@@ -336,7 +332,7 @@ En el navegador de mi ordenador abro `http://192.168.56.19`. Aparece el asistent
 
 📸 **Captura: pantalla 3 (contraseña tapada)**
 
-![Pantalla 3 del asistente](img/07-wp-pantalla3.png)
+![Pantalla 3 del asistente](imagenes/5.captura.datosdelabase.png)
 
 ### Pantalla 5: datos del sitio
 
@@ -350,7 +346,7 @@ En el navegador de mi ordenador abro `http://192.168.56.19`. Aparece el asistent
 
 📸 **Captura: pantalla 5 (contraseña y correo tapados)**
 
-![Pantalla 5 del asistente](img/08-wp-pantalla5.png)
+![Pantalla 5 del asistente](imagenes/5.1.captura.datos.sitio.png)
 
 ### Qué ha pasado "por debajo"
 
@@ -361,7 +357,7 @@ Inicio sesión con el usuario y la contraseña creados y accedo al **escritorio 
 
 📸 **Captura: escritorio de WordPress**
 
-![Escritorio de WordPress](img/09-wp-escritorio.png)
+![Escritorio de WordPress](imagenes/5.2.escritorio.wordpress.png)
 
 ### ❓ ¿Qué partes de la instalación has hecho en la terminal y cuáles en el navegador? ¿Por qué el servidor no necesita interfaz gráfica?
 
@@ -382,7 +378,7 @@ Inicio sesión con el usuario y la contraseña creados y accedo al **escritorio 
 
 📸 **Captura: web pública**
 
-![Web pública de WordPress](img/10-wp-web-publica.png)
+![Web pública de WordPress](imagenes/6.captura.web.publica.png)
 
 ### 6.2. Publicar una entrada de prueba
 
@@ -390,7 +386,7 @@ En el panel: **Entradas → Añadir nueva**. Escribo un título y un texto (mi n
 
 📸 **Captura: entrada publicada en la web pública**
 
-![Entrada publicada](img/11-wp-entrada-publicada.png)
+![Entrada publicada](imagenes/6.1.captura.entrada.prueba.png)
 
 ### 6.3. ¿Dónde ha guardado WordPress mi entrada?
 
@@ -417,7 +413,7 @@ Aparecen unas 12 tablas cuyo nombre empieza por `wp_`:
 
 📸 **Captura: resultado de `SHOW TABLES`**
 
-![Resultado de SHOW TABLES](img/12-show-tables.png)
+![Resultado de SHOW TABLES](imagenes/6.2.captura.tabla.completa.png)
 
 ### 6.4. Dónde está cada cosa
 
@@ -461,7 +457,8 @@ Guardo con `Ctrl+O`, `Enter`, y salgo con `Ctrl+X`.
 
 📸 **Captura: las dos líneas dentro de `wp-config.php` (sin mostrar la contraseña)**
 
-![Líneas añadidas en wp-config.php](img/13b-wp-config-editor.png)
+![Líneas añadidas en wp-config.php](imagenes/7.captura.nano.config.png)
+![Líneas añadidas en wp-config.php](imagenes/7.1.captura.comentario.png)
 
 ### 7.2. Comprobar que no hay errores
 
@@ -481,7 +478,7 @@ Recargo la web en el navegador y sigue funcionando.
 
 📸 **Captura: `grep` y `php -l`**
 
-![grep y php -l sobre wp-config.php](img/13-wp-config-php-l.png)
+![grep y php -l sobre wp-config.php](imagenes/7.2.captura.grep.png)
 
 ---
 
@@ -528,15 +525,16 @@ sudo systemctl restart apache2
 
 📸 **Captura: configuración de Apache y su activación**
 
-![Configuración wordpress.conf y activación](img/14-apache-wordpress-conf.png)
+![Configuración wordpress.conf y activación](imagenes/8.captura.nano.apache.png)
+![Configuración wordpress.conf y activación](imagenes/8.1.captura.activacion.conetindo.nano.png)
 
 **3. Cambiar el formato en WordPress:** **Ajustes → Enlaces permanentes → Nombre de la entrada → Guardar cambios**. Abro contenido desde la portada y compruebo que se ve y que su dirección ya es "bonita".
 
 📸 **Capturas: direcciones bonitas**
 
-![Dirección bonita de una página](img/15-enlace-permanente.png)
+![Dirección bonita de una página](imagenes/8.3.captura.nombre.entrada.png)
 
-![Dirección bonita de una entrada](img/15b-enlace-entrada.png)
+![Dirección bonita de una entrada](imagenes/8.4.captura.barra.bonita.png)
 
 **4. Comprobar que WordPress creó el `.htaccess`:**
 
@@ -548,7 +546,7 @@ ls -la /var/www/html/.htaccess
 
 📸 **Captura: fichero `.htaccess`**
 
-![Fichero .htaccess](img/16-htaccess.png)
+![Fichero .htaccess](imagenes/8.5.captura.ls.htaccess.png)
 
 ### 8.2. Poder subir ficheros grandes
 
@@ -571,7 +569,7 @@ Compruebo en el panel: **Medios → Añadir nuevo** indica un tamaño máximo de
 
 📸 **Captura: tamaño máximo de subida**
 
-![Tamaño máximo de subida de 64 MB](img/17-subida-64mb.png)
+![Tamaño máximo de subida de 64 MB](imagenes/8.6.captura.subida.64mb.png)
 
 ### ❓ ¿Por qué las direcciones "bonitas" dan error 404 si Apache no tiene permitido leer el `.htaccess`?
 
