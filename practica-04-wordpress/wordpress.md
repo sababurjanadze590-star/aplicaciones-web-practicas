@@ -141,7 +141,6 @@ grep DocumentRoot /etc/apache2/sites-enabled/000-default.conf
 | `ls /etc/apache2/sites-enabled/` | Lista los sitios activos. Debe aparecer **solo** `000-default.conf`. |
 | `grep DocumentRoot /etc/apache2/sites-enabled/000-default.conf` | Busca la línea `DocumentRoot`: la carpeta desde la que Apache sirve el sitio (`/var/www/html`). |
 
-📸 **Captura: sitios activos y `DocumentRoot`**
 
 ![Sitios activos y DocumentRoot](imagenes/2.1captura.sitio.unico.png)
 
@@ -149,7 +148,7 @@ grep DocumentRoot /etc/apache2/sites-enabled/000-default.conf
 
 En el navegador de mi ordenador abro `http://192.168.56.19`. Aparece la página de Apache. Ya no hace falta usar `sitio1.local` ni `sitio2.local`.
 
-📸 **Captura: página de Apache en el navegador**
+
 
 ![Página de Apache en el navegador](imagenes/2.2captura.navegador.png)
 
@@ -196,7 +195,6 @@ exit
 
 Cada una de las tres órdenes SQL responde `Query OK`.
 
-📸 **Captura: creación de la base de datos y el usuario (contraseña tapada)**
 
 ![Creación de la base de datos y el usuario](imagenes/3.captura.mariadb.creacion.png)
 
@@ -214,8 +212,6 @@ mariadb -u wp_user -p wordpress
 | `wordpress` | Base de datos a la que se conecta. |
 
 Aparece el prompt `MariaDB [wordpress]>`, así que todo funciona. Salgo con `exit`.
-
-📸 **Captura: entrada con `wp_user`**
 
 ![Entrada con wp_user](imagenes/3.1captura.mariadb-wp-user.png)
 
@@ -245,7 +241,6 @@ ls wordpress
 | `tar -xzf latest.tar.gz` | Descomprime el fichero y crea la carpeta `wordpress` (`x` extraer, `z` descomprimir gzip, `f` indica el fichero). |
 | `ls wordpress` | Lista el contenido: `index.php`, `wp-admin`, `wp-content`, `wp-config-sample.php`... |
 
-📸 **Captura: descarga y descompresión**
 
 ![Descarga y descompresión de WordPress](imagenes/4.captura.descargar.descomprimir.png)
 
@@ -264,8 +259,6 @@ ls /var/www/html
 | `sudo cp -a /tmp/wordpress/. /var/www/html/` | Copia **todo el contenido** de WordPress (incluidos ficheros ocultos, por el `.` final) a la carpeta del sitio. `-a` copia de forma recursiva conservando permisos y atributos. |
 | `rm -r /tmp/wordpress /tmp/latest.tar.gz` | Limpia: borra la carpeta descomprimida y el `.tar.gz`, que ya no hacen falta. `-r` borra carpetas de forma recursiva. |
 | `ls /var/www/html` | Comprueba que WordPress está en la carpeta del sitio. |
-
-📸 **Captura: copia de WordPress a `/var/www/html`**
 
 ![Copia de WordPress a /var/www/html](imagenes/4.1.colocar.carpeta.sitio.png)
 
@@ -293,7 +286,6 @@ ls -ld /var/www/html
 
 La última orden muestra `www-data www-data` como propietario y grupo.
 
-📸 **Capturas: permisos aplicados y resultado de `ls`**
 
 ![Permisos aplicados](imagenes/4.2.darpermisos.png)
 
@@ -330,7 +322,6 @@ En el navegador de mi ordenador abro `http://192.168.56.19`. Aparece el asistent
 | Servidor de la base de datos | `localhost` |
 | Prefijo de tabla | `wp_` (por defecto) |
 
-📸 **Captura: pantalla 3 (contraseña tapada)**
 
 ![Pantalla 3 del asistente](imagenes/5.captura.datosdelabase.png)
 
@@ -344,7 +335,6 @@ En el navegador de mi ordenador abro `http://192.168.56.19`. Aparece el asistent
 | Correo electrónico | Un correo de práctica (tapado en la captura) |
 | Visibilidad en motores de búsqueda | **Disuadir a los motores de búsqueda** marcado (sitio de prácticas) |
 
-📸 **Captura: pantalla 5 (contraseña y correo tapados)**
 
 ![Pantalla 5 del asistente](imagenes/5.1.captura.datos.sitio.png)
 
@@ -355,7 +345,6 @@ En el navegador de mi ordenador abro `http://192.168.56.19`. Aparece el asistent
 
 Inicio sesión con el usuario y la contraseña creados y accedo al **escritorio de WordPress**.
 
-📸 **Captura: escritorio de WordPress**
 
 ![Escritorio de WordPress](imagenes/5.2.escritorio.wordpress.png)
 
@@ -376,7 +365,6 @@ Inicio sesión con el usuario y la contraseña creados y accedo al **escritorio 
 - Web pública: `http://192.168.56.19` (se ve mi sitio con el título elegido).
 - Panel de administración: `http://192.168.56.19/wp-admin` (inicio sesión con mi usuario).
 
-📸 **Captura: web pública**
 
 ![Web pública de WordPress](imagenes/6.captura.web.publica.png)
 
@@ -384,7 +372,6 @@ Inicio sesión con el usuario y la contraseña creados y accedo al **escritorio 
 
 En el panel: **Entradas → Añadir nueva**. Escribo un título y un texto (mi nombre y la fecha), pulso **Publicar** y compruebo que aparece en la web pública.
 
-📸 **Captura: entrada publicada en la web pública**
 
 ![Entrada publicada](imagenes/6.1.captura.entrada.prueba.png)
 
@@ -410,8 +397,6 @@ Aparecen unas 12 tablas cuyo nombre empieza por `wp_`:
 | `wp_comments` | Comentarios de los visitantes |
 | `wp_terms`, `wp_term_taxonomy`, `wp_term_relationships` | Categorías y etiquetas, y su relación con las entradas |
 | `wp_links` | Enlaces (función antigua, casi no se usa) |
-
-📸 **Captura: resultado de `SHOW TABLES`**
 
 ![Resultado de SHOW TABLES](imagenes/6.2.captura.tabla.completa.png)
 
@@ -455,7 +440,6 @@ define( 'WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] );
 
 Guardo con `Ctrl+O`, `Enter`, y salgo con `Ctrl+X`.
 
-📸 **Captura: las dos líneas dentro de `wp-config.php` (sin mostrar la contraseña)**
 
 ![Líneas añadidas en wp-config.php](imagenes/7.captura.nano.config.png)
 ![Líneas añadidas en wp-config.php](imagenes/7.1.captura.comentario.png)
@@ -476,7 +460,6 @@ Recargo la web en el navegador y sigue funcionando.
 
 > Estas dos líneas son cómodas para un laboratorio. En un servidor real se escribiría la dirección fija del sitio.
 
-📸 **Captura: `grep` y `php -l`**
 
 ![grep y php -l sobre wp-config.php](imagenes/7.2.captura.grep.png)
 
@@ -523,14 +506,12 @@ sudo systemctl restart apache2
 | `sudo apache2ctl configtest` | Comprueba la sintaxis (`Syntax OK`). |
 | `sudo systemctl restart apache2` | Reinicia Apache para aplicar los cambios. |
 
-📸 **Captura: configuración de Apache y su activación**
 
 ![Configuración wordpress.conf y activación](imagenes/8.captura.nano.apache.png)
 ![Configuración wordpress.conf y activación](imagenes/8.1.captura.activacion.conetindo.nano.png)
 
 **3. Cambiar el formato en WordPress:** **Ajustes → Enlaces permanentes → Nombre de la entrada → Guardar cambios**. Abro contenido desde la portada y compruebo que se ve y que su dirección ya es "bonita".
 
-📸 **Capturas: direcciones bonitas**
 
 ![Dirección bonita de una página](imagenes/8.3.captura.nombre.entrada.png)
 
@@ -544,7 +525,6 @@ ls -la /var/www/html/.htaccess
 
 **Qué hace:** lista el fichero `.htaccess` (oculto por empezar por punto) con sus permisos y propietario, para confirmar que WordPress lo ha creado.
 
-📸 **Captura: fichero `.htaccess`**
 
 ![Fichero .htaccess](imagenes/8.5.captura.ls.htaccess.png)
 
@@ -566,8 +546,6 @@ sudo systemctl restart apache2
 | `sudo systemctl restart apache2` | Reinicia Apache para que PHP lea la nueva configuración. |
 
 Compruebo en el panel: **Medios → Añadir nuevo** indica un tamaño máximo de **64 MB**.
-
-📸 **Captura: tamaño máximo de subida**
 
 ![Tamaño máximo de subida de 64 MB](imagenes/8.6.captura.subida.64mb.png)
 
@@ -591,9 +569,7 @@ sudo systemctl stop mariadb
 
 Al recargar `http://192.168.56.19` aparece el mensaje **"Error al establecer una conexión con la base de datos"**.
 
-📸 **Captura: error en el navegador**
-
-![Error de conexión con la base de datos](img/18-error-base-datos.png)
+![Error de conexión con la base de datos](imagenes/9.captura.error.png)
 
 ### 9.2. Arrancar MariaDB de nuevo
 
@@ -607,15 +583,13 @@ systemctl is-active mariadb
 | `sudo systemctl start mariadb` | Arranca de nuevo el servicio de MariaDB. |
 | `systemctl is-active mariadb` | Comprueba que está en marcha (responde `active`). |
 
-📸 **Captura: `stop`, `start` e `is-active`**
 
-![Parar y arrancar MariaDB](img/19-mariadb-stop-start.png)
+![Parar y arrancar MariaDB](imagenes/9.1.captura.arrancar.nuevo.png)    
 
 Al recargar la web, vuelve a funcionar.
 
-📸 **Captura: web recuperada**
 
-![Web recuperada](img/20-web-recuperada.png)
+![Web recuperada](imagenes/9.2.captura.funciona.png)
 
 ### Guía rápida cuando WordPress muestre ese error
 
@@ -645,9 +619,8 @@ sudo mariadb wordpress -e "SHOW TABLES;"
 | `ls /etc/apache2/sites-enabled/` | Solo hay un sitio activo |
 | `sudo mariadb wordpress -e "SHOW TABLES;"` | WordPress creó sus tablas en la base de datos |
 
-📸 **Captura: comprobación final**
 
-![Comprobación final](img/21-comprobacion-final.png)
+![Comprobación final](imagenes/10.captura.comprobacion.final.png)
 
 ### Estado final del servidor
 
