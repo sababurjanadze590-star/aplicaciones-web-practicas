@@ -7,8 +7,6 @@
 | **Alumno/a** | Saba Burjanadze |
 | **Curso** | 2SMX 23/10/2026 |
 
-> 🔒 **Seguridad:** en esta memoria no aparece ninguna contraseña real. Donde iría una contraseña se escribe `********` y las capturas tienen las contraseñas tapadas.
-
 ---
 
 ## Índice
